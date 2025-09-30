@@ -1,0 +1,116 @@
+============================================================
+ANÁLISIS EXPLORATORIO DE DATOS
+============================================================
+Cargando: Dataset original de tráfico
+Dataset: 33,902 registros, 12 columnas
+============================================================
+ANÁLISIS DE PUERTOS
+============================================================
+
+Top 20 puertos destino más frecuentes:
+  Puerto 443: 12955 conexiones
+  Puerto 49428: 3704 conexiones
+  Puerto 80: 1895 conexiones
+  Puerto 53: 1459 conexiones
+  Puerto 137: 1155 conexiones
+  Puerto 59843: 850 conexiones
+  Puerto 49169: 353 conexiones
+  Puerto 53467: 308 conexiones
+  Puerto 49269: 249 conexiones
+  Puerto 64811: 238 conexiones
+  Puerto 58308: 228 conexiones
+  Puerto 49280: 166 conexiones
+  Puerto 4132: 159 conexiones
+  Puerto 49307: 151 conexiones
+  Puerto 49426: 135 conexiones
+  Puerto 49325: 127 conexiones
+  Puerto 49289: 122 conexiones
+  Puerto 49270: 118 conexiones
+  Puerto 54894: 106 conexiones
+  Puerto 49271: 106 conexiones
+
+Tráfico en puertos conocidos de malware:
+  Puerto 137: 1155 conexiones
+============================================================
+ANÁLISIS DE CONSULTAS DNS
+============================================================
+
+Total de consultas DNS: 1459
+
+Top 15 TLDs en consultas DNS:
+  .com: 1254 consultas
+  .net: 104 consultas
+  .org: 57 consultas
+  .biz: 14 consultas
+  .goog: 7 consultas
+  .es: 3 consultas
+  .io: 3 consultas
+  .cn: 2 consultas
+  .uk: 2 consultas
+  .fr: 2 consultas
+  .my: 2 consultas
+  .xyz: 1 consultas
+  .top: 1 consultas
+  .tv: 1 consultas
+  .arpa: 1 consultas
+
+Consultas DNS con TLDs sospechosos:
+  .biz: 14 consultas
+  .cn: 2 consultas
+
+Dominios con más de 40 caracteres: 17
+============================================================
+ANÁLISIS DE TRÁFICO HTTP
+============================================================
+
+Total de registros HTTP: 390
+Registros HTTP sin User-Agent: 43 (11.0%)
+
+Top 10 paths HTTP más comunes:
+  /: 111
+  /login.php: 74
+  /IP.php: 29
+  /gts1c3: 17
+  /headimage/al1402.fla: 11
+  /pony/gate.php: 11
+  /dll.php: 11
+  /assets/Owner/arm/20/adnme/NoValidReasonForAdnme.txt: 6
+  /DSTROOTCAX3CRL.crl: 6
+  /assets/Owner/arm/ProcessMAU.txt: 6
+============================================================
+ANÁLISIS DE LONGITUDES DE PAQUETES
+============================================================
+
+Estadísticas de longitud de paquetes:
+  Media: 400.90
+  Mediana: 66.00
+  Desviación estándar: 837.15
+  Mínimo: 54
+  Máximo: 64294
+
+Paquetes muy grandes (>P99) con puerto alto (>10000): 11
+============================================================
+ANÁLISIS TEMPORAL
+============================================================
+
+Distribución de tráfico por hora:
+  Hora 10: 3127 conexiones
+  Hora 11: 3689 conexiones
+  Hora 12: 24476 conexiones
+  Hora 13: 576 conexiones
+  Hora 14: 1574 conexiones
+  Hora 15: 460 conexiones
+============================================================
+RESUMEN DE HALLAZGOS PARA ETIQUETADO
+============================================================
+
+Patrones identificados para crear reglas de etiquetado:
+1. Puerto 137 (NetBIOS) con tráfico significativo
+2. Puertos de malware conocidos detectados (4444, 6667, 31337)
+3. TLDs sospechosos en DNS (.tk, .ml, .ga, .biz, .cn)
+4. Tráfico HTTP sin User-Agent (posible bot/malware)
+5. Dominios DNS muy largos (>40 chars, posible DGA)
+6. Paquetes extremadamente grandes con puerto alto
+
+Análisis exploratorio completado.
+Gráficos guardados en results/exploratory/

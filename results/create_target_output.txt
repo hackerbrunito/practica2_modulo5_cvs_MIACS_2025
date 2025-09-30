@@ -1,0 +1,44 @@
+============================================================
+CREACIÓN DE VARIABLE OBJETIVO
+============================================================
+Cargando: Dataset original
+Dataset: 33,902 registros, 12 columnas
+============================================================
+APLICANDO REGLAS DE ETIQUETADO
+============================================================
+Regla 1 - Puerto 137 (NetBIOS): 1155 registros
+Regla 2 - Puertos de malware conocidos: 0 registros
+Regla 3 - TLDs sospechosos: 16 registros
+Regla 4 - HTTP sin User-Agent: 43 registros
+Regla 5 - Dominios largos (posible DGA): 17 registros
+Regla 6 - Paquetes grandes + puerto alto: 11 registros
+============================================================
+DISTRIBUCIÓN DE LA VARIABLE OBJETIVO
+============================================================
+
+Distribución final:
+  Normal: 32,660 (96.3%)
+  Sospechoso: 1,242 (3.7%)
+
+ADVERTENCIA: 3.7% sospechoso - FUERA del rango objetivo (10-30%)
+============================================================
+RESUMEN DE REGLAS APLICADAS
+============================================================
+  Puerto 137 (NetBIOS): 1155 registros
+  Puertos de malware: 0 registros
+  TLDs sospechosos: 16 registros
+  HTTP sin User-Agent: 43 registros
+  Dominios largos (DGA): 17 registros
+  Paquetes grandes + puerto alto: 11 registros
+============================================================
+GUARDANDO DATASET ETIQUETADO
+============================================================
+Dataset guardado en: /home/bruno/01_practica2_miacs_2025/data/traffic_labeled.csv
+Registros: 33,902
+Columnas: 13 (agregada 'suspicious')
+============================================================
+PROCESO COMPLETADO
+============================================================
+
+Variable objetivo creada exitosamente.
+Balance final: 3.7% tráfico sospechoso

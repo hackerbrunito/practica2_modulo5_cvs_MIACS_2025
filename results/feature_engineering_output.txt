@@ -1,0 +1,58 @@
+============================================================
+FEATURE ENGINEERING
+============================================================
+Cargando: Dataset etiquetado
+Dataset: 33,902 registros, 13 columnas
+============================================================
+APLICANDO TRANSFORMACIONES
+============================================================
+Extrayendo características temporales...
+  - Agregadas: hour, day_of_week, is_weekend
+Aplicando one-hot encoding a protocol...
+  - Protocol codificado en: protocol_TCP, protocol_UDP
+Categorizando puertos...
+  - Puertos categorizados y codificados
+Creando flags binarios...
+  - Agregados: has_dns, has_http, has_user_agent, is_malware_port
+Normalizando length...
+  - length_normalized agregado (media=0, std=1)
+Codificando rangos de IPs...
+  - Agregadas frecuencias normalizadas de IPs
+Eliminando columnas no numéricas...
+  - Eliminadas: src_ip_anon, dst_ip_anon, dns_query, http_host, http_path, user_agent
+Reordenando columnas...
+============================================================
+DATASET PROCESADO
+============================================================
+Forma final: 33,902 registros, 23 features
+
+Features finales (22 + 1 target):
+  1. src_port
+  2. dst_port
+  3. length
+  4. is_length_outlier
+  5. hour
+  6. day_of_week
+  7. is_weekend
+  8. protocol_TCP
+  9. protocol_UDP
+  10. src_port_cat_dynamic
+  11. src_port_cat_registered
+  12. src_port_cat_well_known
+  13. dst_port_cat_dynamic
+  14. dst_port_cat_registered
+  15. dst_port_cat_well_known
+  16. has_dns
+  17. has_http
+  18. has_user_agent
+  19. is_malware_port
+  20. length_normalized
+  21. src_ip_freq_norm
+  22. dst_ip_freq_norm
+  TARGET: suspicious
+
+Dataset procesado guardado en: /home/bruno/01_practica2_miacs_2025/data/traffic_processed.csv
+
+Valores NaN en el dataset final: 0
+
+Feature engineering completado exitosamente.

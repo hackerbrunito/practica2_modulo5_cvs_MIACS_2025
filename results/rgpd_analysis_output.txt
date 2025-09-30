@@ -1,0 +1,141 @@
+============================================================
+ANÁLISIS RGPD - DATASET TRÁFICO DE RED
+============================================================
+Máximo 1 página - Análisis específico del dataset
+============================================================
+1. IDENTIFICACIÓN DE DATOS PERSONALES
+============================================================
+
+DATOS PERSONALES IDENTIFICADOS:
+
+a) DIRECCIONES IP (Pseudonimizadas)
+   - src_ip_anon y dst_ip_anon
+   - Técnica: Hash SHA-256 truncado a 12 caracteres
+   - Naturaleza: Dato personal según RGPD Art. 4(1)
+   - Razón: Permite identificación indirecta con información adicional
+   - Riesgo: Re-identificación mediante análisis de patrones de tráfico
+
+b) CONSULTAS DNS
+   - dns_query: dominios visitados por usuarios
+   - Naturaleza: Perfil de navegación = dato personal
+   - Ejemplo: 'facebook.com', 'gmail.com' revelan hábitos
+   - Riesgo: Creación de perfiles de comportamiento detallados
+
+c) USER-AGENT
+   - user_agent: información del navegador y sistema
+   - Naturaleza: Contribuye al fingerprinting del dispositivo
+   - Ejemplo: 'Mozilla/5.0 (Windows NT 10.0; Win64)...'
+   - Riesgo: Combinado con otros datos permite identificación única
+
+d) METADATOS DE RED
+   - Puertos, protocolos, timestamps
+   - Naturaleza: Datos de tráfico = datos personales en contexto
+   - Riesgo: Patrones reveladores (ej: puerto 22 = uso de SSH)
+============================================================
+2. PSEUDONIMIZACIÓN VS ANONIMIZACIÓN
+============================================================
+
+PSEUDONIMIZACIÓN APLICADA:
+- IPs hasheadas con SHA-256 (12 caracteres)
+- Características:
+  • Proceso determinístico (misma IP → mismo hash)
+  • Sin clave/salt almacenada
+  • Técnicamente irreversible
+
+LIMITACIONES:
+- No es verdadera anonimización según RGPD porque:
+  • Ataques de diccionario sobre espacio IPv4 (4.3B direcciones)
+  • Análisis de patrones temporales y de comportamiento
+  • Correlación con logs externos
+
+K-ANONIMIDAD APLICADA (k=10):
+- Intento de anonimización mediante generalización
+- Cada registro indistinguible de al menos otros 9
+- PERO: sigue siendo pseudonimización porque:
+  • IPs hasheadas siguen siendo identificadores únicos
+  • DNS queries no generalizadas
+  • User-agents intactos
+
+CONCLUSIÓN:
+Dataset pseudonimizado, NO anonimizado
+→ RGPD sigue aplicando completamente
+============================================================
+3. BASE LEGAL DEL TRATAMIENTO
+============================================================
+
+BASE LEGAL: INTERÉS LEGÍTIMO (Art. 6.1.f RGPD)
+
+JUSTIFICACIÓN:
+- Finalidad: Seguridad de la red y detección de amenazas
+- Interés legítimo del responsable en:
+  • Proteger infraestructura IT
+  • Prevenir ciberataques
+  • Cumplir obligaciones de ciberseguridad
+
+EVALUACIÓN DE PROPORCIONALIDAD:
+✓ Necesidad: Imprescindible para detectar tráfico malicioso
+✓ Proporcionalidad: Solo datos mínimos de red
+✓ Salvaguardias: Pseudonimización + k-anonimidad
+✗ Riesgo: Perfilado de usuarios legítimos
+
+MEDIDAS COMPENSATORIAS NECESARIAS:
+- Minimización: Eliminar DNS/HTTP cuando sea posible
+- Plazo retención: Máximo 6 meses
+- Transparencia: Informar a usuarios
+- Opt-out: Permitir exclusión del análisis
+============================================================
+4. RIESGOS RESIDUALES POST-ANONIMIZACIÓN
+============================================================
+
+RIESGOS IDENTIFICADOS:
+
+1. RE-IDENTIFICACIÓN POR ANÁLISIS DE PATRONES
+   - Comportamiento único de navegación
+   - Horarios de conexión regulares
+   - Combinación puerto/protocolo/longitud distintiva
+   - Mitigación: Aumentar k a 20-50
+
+2. ATAQUES DE LINKAGE
+   - Cruce con logs públicos (ej: servidores web)
+   - Correlación temporal con eventos conocidos
+   - Mitigación: Generalizar timestamps a ventanas de 15 min
+
+3. INFERENCIAS SENSIBLES
+   - DNS a sitios médicos → condición de salud
+   - Puertos específicos → actividades profesionales
+   - Patrones nocturnos → hábitos personales
+   - Mitigación: Eliminar DNS de categorías sensibles
+
+4. IDENTIFICACIÓN DE OUTLIERS
+   - is_length_outlier facilita re-identificación
+   - Comportamiento anómalo = más identificable
+   - Mitigación: Eliminar o generalizar outliers
+
+RECOMENDACIONES FINALES:
+1. Implementar anonimización verdadera (eliminar IPs)
+2. Agregación temporal (ventanas de 1 hora)
+3. Supresión selectiva de datos sensibles
+4. Evaluación de Impacto (DPIA) obligatoria
+============================================================
+RESUMEN EJECUTIVO
+============================================================
+
+DATASET: traffic_anonymous.csv
+NATURALEZA: Datos de tráfico de red pseudonimizados
+CLASIFICACIÓN RGPD: Datos personales (NO anonimizados)
+
+PRINCIPALES RIESGOS:
+- Re-identificación mediante análisis de patrones
+- Creación de perfiles de comportamiento
+- Revelación de información sensible
+
+BASE LEGAL: Interés legítimo en seguridad
+REQUERIMIENTOS: DPIA + medidas técnicas adicionales
+
+CONCLUSIÓN:
+El dataset requiere tratamiento como datos personales
+con todas las obligaciones RGPD aplicables.
+
+============================================================
+Análisis RGPD completado
+Guardado en: rgpd_analysis_output.txt

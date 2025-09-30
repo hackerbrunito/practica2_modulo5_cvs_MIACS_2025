@@ -1,0 +1,106 @@
+============================================================
+ANÁLISIS DE EXPLICABILIDAD CON SHAP
+============================================================
+============================================================
+CARGANDO MODELO Y DATOS
+============================================================
+Modelo cargado desde: /home/bruno/01_practica2_miacs_2025/models/random_forest_model.pkl
+Cargando: Dataset procesado
+Dataset: 33,902 registros, 23 columnas
+Datos de test: 10,171 registros
+============================================================
+CREANDO EXPLAINER DE SHAP
+============================================================
+Usando TreeExplainer (optimizado para Random Forest)...
+Explainer creado exitosamente.
+============================================================
+BUSCANDO EJEMPLOS PARA EXPLICAR
+============================================================
+Ejemplo sospechoso seleccionado: índice 5875
+Ejemplo normal seleccionado: índice 20379
+============================================================
+EXPLICACIÓN: INSTANCIA SOSPECHOSA
+============================================================
+
+Explicando instancia suspicious (índice 5875)...
+  Tipo de shap_values_all: <class 'numpy.ndarray'>
+  Forma de shap_values_all: (1, 22, 2)
+  Forma final de shap_values: (22,)
+  Número de features: 22
+  Predicción: Sospechoso
+  Probabilidad sospechoso: 1.0000
+  Force plot guardado en: /home/bruno/01_practica2_miacs_2025/results/shap_plots/force_plot_suspicious.png
+
+  Top 10 features que influyen en la predicción:
+    is_malware_port: 1.0000 (SHAP: 0.2541 → sospechoso)
+    dst_port: 137.0000 (SHAP: 0.1617 → sospechoso)
+    src_port: 137.0000 (SHAP: 0.1467 → sospechoso)
+    protocol_UDP: 1.0000 (SHAP: 0.0717 → sospechoso)
+    length: 92.0000 (SHAP: 0.0622 → sospechoso)
+    dst_ip_freq_norm: -1.0102 (SHAP: 0.0539 → sospechoso)
+    length_normalized: -0.3690 (SHAP: 0.0500 → sospechoso)
+    protocol_TCP: 0.0000 (SHAP: 0.0374 → sospechoso)
+    src_port_cat_dynamic: 0.0000 (SHAP: 0.0350 → sospechoso)
+    src_port_cat_well_known: 1.0000 (SHAP: 0.0309 → sospechoso)
+============================================================
+EXPLICACIÓN: INSTANCIA NORMAL
+============================================================
+
+Explicando instancia normal (índice 20379)...
+  Tipo de shap_values_all: <class 'numpy.ndarray'>
+  Forma de shap_values_all: (1, 22, 2)
+  Forma final de shap_values: (22,)
+  Número de features: 22
+  Predicción: Normal
+  Probabilidad sospechoso: 0.0000
+  Force plot guardado en: /home/bruno/01_practica2_miacs_2025/results/shap_plots/force_plot_normal.png
+
+  Top 10 features que influyen en la predicción:
+    dst_port: 49428.0000 (SHAP: -0.0181 → normal)
+    is_malware_port: 0.0000 (SHAP: -0.0113 → normal)
+    length: 1514.0000 (SHAP: 0.0057 → sospechoso)
+    protocol_UDP: 0.0000 (SHAP: -0.0040 → normal)
+    length_normalized: 1.3297 (SHAP: 0.0038 → sospechoso)
+    src_ip_freq_norm: -0.7552 (SHAP: -0.0037 → normal)
+    dst_ip_freq_norm: 1.0341 (SHAP: -0.0037 → normal)
+    src_port_cat_dynamic: 0.0000 (SHAP: 0.0029 → sospechoso)
+    is_length_outlier: 1.0000 (SHAP: 0.0027 → sospechoso)
+    src_port: 443.0000 (SHAP: -0.0026 → normal)
+============================================================
+CREANDO SUMMARY PLOT GLOBAL
+============================================================
+Calculando valores SHAP para todo el conjunto de test...
+(Esto puede tardar unos momentos...)
+Summary plot guardado en: /home/bruno/01_practica2_miacs_2025/results/shap_plots/summary_plot.png
+(Basado en 1000 muestras del test set)
+============================================================
+INTERPRETACIÓN DE RESULTADOS
+============================================================
+
+INTERPRETACIÓN DE LOS GRÁFICOS SHAP:
+
+1. FORCE PLOTS (Instancias individuales):
+   - Muestran cómo cada feature contribuye a la predicción
+   - Rojo = empuja hacia clase sospechosa (1)
+   - Azul = empuja hacia clase normal (0)
+   - El ancho representa la magnitud de la contribución
+
+2. SUMMARY PLOT (Global):
+   - Muestra las features más importantes en general
+   - Cada punto es una instancia
+   - Color rojo = valor alto de la feature
+   - Color azul = valor bajo de la feature
+   - Posición horizontal = impacto SHAP (izq=normal, der=sospechoso)
+
+3. HALLAZGOS CLAVE:
+   - Las features relacionadas con puertos tienen gran impacto
+   - Los flags binarios (has_dns, has_http) son importantes
+   - Las frecuencias de IP normalizadas influyen en la decisión
+   - La hora del día puede ser un factor relevante
+
+============================================================
+PROCESO COMPLETADO
+============================================================
+
+Análisis SHAP completado exitosamente.
+Gráficos guardados en results/shap_plots/

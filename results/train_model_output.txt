@@ -1,0 +1,101 @@
+============================================================
+ENTRENAMIENTO DE MODELO DE MACHINE LEARNING
+============================================================
+Cargando: Dataset procesado
+Dataset: 33,902 registros, 23 columnas
+============================================================
+PREPARACIÓN DE DATOS
+============================================================
+Features (X): (33902, 22)
+Target (y): (33902,)
+Distribución del target:
+  - Normal (0): 32660 (96.3%)
+  - Sospechoso (1): 1242 (3.7%)
+============================================================
+DIVISIÓN TRAIN/TEST
+============================================================
+Conjunto de entrenamiento: 23,731 registros
+Conjunto de test: 10,171 registros
+Proporción test: 0.3 (30%)
+Random state: 42
+Estratificación: Sí (mantiene proporción de clases)
+============================================================
+ENTRENAMIENTO DEL MODELO
+============================================================
+Modelo: RandomForestClassifier
+Parámetros:
+  - n_estimators: 100
+  - max_depth: 10 (para interpretabilidad)
+  - random_state: 42
+  - n_jobs: -1 (todos los cores)
+
+Entrenando modelo...
+Modelo entrenado exitosamente.
+============================================================
+EVALUACIÓN DEL MODELO
+============================================================
+MÉTRICAS EN CONJUNTO DE ENTRENAMIENTO:
+  - Accuracy: 0.9997
+  - Precision: 1.0000
+  - Recall: 0.9919
+  - F1-Score: 0.9960
+
+MÉTRICAS EN CONJUNTO DE TEST:
+  - Accuracy: 0.9991
+  - Precision: 0.9866
+  - Recall: 0.9893
+  - F1-Score: 0.9880
+
+MATRIZ DE CONFUSIÓN (Test):
+  True Negatives:   9,793
+  False Positives:      5
+  False Negatives:      4
+  True Positives:     369
+
+REPORTE DE CLASIFICACIÓN (Test):
+              precision    recall  f1-score   support
+
+      Normal       1.00      1.00      1.00      9798
+  Sospechoso       0.99      0.99      0.99       373
+
+    accuracy                           1.00     10171
+   macro avg       0.99      0.99      0.99     10171
+weighted avg       1.00      1.00      1.00     10171
+
+============================================================
+IMPORTANCIA DE FEATURES
+============================================================
+Top 15 features más importantes:
+  is_malware_port: 0.3150
+  src_port: 0.1357
+  dst_port: 0.1236
+  length: 0.0746
+  length_normalized: 0.0617
+  src_port_cat_dynamic: 0.0550
+  dst_ip_freq_norm: 0.0513
+  src_port_cat_well_known: 0.0484
+  protocol_UDP: 0.0301
+  dst_port_cat_well_known: 0.0276
+  dst_port_cat_dynamic: 0.0240
+  protocol_TCP: 0.0132
+  has_dns: 0.0124
+  hour: 0.0084
+  has_user_agent: 0.0064
+============================================================
+GUARDANDO MODELO
+============================================================
+Modelo guardado en: /home/bruno/01_practica2_miacs_2025/models/random_forest_model.pkl
+============================================================
+RESUMEN FINAL
+============================================================
+Modelo: RandomForestClassifier (max_depth=10)
+Métricas en test:
+  - Accuracy: 0.9991
+  - Precision: 0.9866
+  - Recall: 0.9893
+  - F1-Score: 0.9880
+
+NOTA: El objetivo NO es alta precisión, sino interpretabilidad.
+El modelo está limitado en profundidad para facilitar explicación con SHAP.
+
+Entrenamiento completado exitosamente.

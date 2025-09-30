@@ -1,0 +1,71 @@
+============================================================
+APLICACIÓN DE 10-ANONIMIDAD
+============================================================
+k = 10
+Cargando: Dataset procesado original
+Dataset: 33,902 registros, 23 columnas
+============================================================
+DEFINIENDO CUASI-IDENTIFICADORES
+============================================================
+Cuasi-identificadores definidos:
+  - src_port_range
+  - dst_port_range
+  - hour_bucket
+  - length_bucket
+============================================================
+APLICANDO 10-ANONIMIDAD
+============================================================
+Grupos totales antes de k-anonimidad: 48
+Grupos que no cumplen k=10: 12
+
+Registros originales: 33,902
+Registros tras k-anonimidad: 33,847
+Registros suprimidos: 55 (0.2%)
+============================================================
+MIDIENDO PÉRDIDA DE INFORMACIÓN
+============================================================
+Pérdida de registros: 0.16%
+
+Pérdida de diversidad en cuasi-identificadores:
+  src_port_range: 4 → 4 valores únicos (0.0% pérdida)
+  dst_port_range: 4 → 4 valores únicos (0.0% pérdida)
+  hour_bucket: 2 → 2 valores únicos (0.0% pérdida)
+  length_bucket: 5 → 5 valores únicos (0.0% pérdida)
+
+Distribución de 'suspicious':
+  Original: 0.037
+  Anonimizado: 0.037
+  Diferencia: 0.000
+============================================================
+COMPARANDO RENDIMIENTO DEL MODELO
+============================================================
+
+Entrenando modelo con datos originales...
+Entrenando modelo con datos anonimizados...
+
+MÉTRICAS COMPARATIVAS:
+Accuracy - Original: 0.9991
+Accuracy - Anonimizado: 0.9994
+Pérdida de accuracy: -0.0003
+
+F1-Score - Original: 0.9880
+F1-Score - Anonimizado: 0.9919
+Pérdida de F1: -0.0039
+============================================================
+CREANDO GRÁFICO DE UTILIDAD VS PRIVACIDAD
+============================================================
+Gráfico guardado en: /home/bruno/01_practica2_miacs_2025/results/privacy_analysis/utility_comparison.png
+============================================================
+GUARDANDO DATASET ANONIMIZADO
+============================================================
+Dataset anonimizado guardado en: /home/bruno/01_practica2_miacs_2025/data/traffic_k_anonymous.csv
+Registros: 33,847
+Columnas: 23
+============================================================
+RESUMEN FINAL
+============================================================
+
+10-anonimidad aplicada exitosamente.
+Privacidad ganada: Grupos de al menos 10 registros idénticos
+Utilidad preservada: 100.0% de accuracy original
+Trade-off aceptable para protección de privacidad.

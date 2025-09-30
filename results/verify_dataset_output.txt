@@ -1,0 +1,69 @@
+Verificando dataset...
+============================================================
+VERIFICACIÓN DEL DATASET
+============================================================
+Archivo encontrado: /home/bruno/01_practica2_miacs_2025/data/traffic_anonymous.csv
+
+Estructura del dataset:
+- Número de registros: 33,902
+- Número de columnas: 12
+
+Columnas del dataset:
+- timestamp
+- src_ip_anon
+- dst_ip_anon
+- protocol
+- src_port
+- dst_port
+- length
+- dns_query
+- http_host
+- http_path
+- user_agent
+- is_length_outlier
+
+Tipos de datos:
+timestamp             object
+src_ip_anon           object
+dst_ip_anon           object
+protocol              object
+src_port             float64
+dst_port             float64
+length                 int64
+dns_query             object
+http_host             object
+http_path             object
+user_agent            object
+is_length_outlier       bool
+dtype: object
+
+Valores faltantes por columna:
+- dns_query: 32443 (95.70%)
+- http_host: 33512 (98.85%)
+- http_path: 33513 (98.85%)
+- user_agent: 33555 (98.98%)
+
+Estadísticas básicas:
+           src_port      dst_port        length
+count  33902.000000  33902.000000  33902.000000
+mean   25120.505398  24508.586042    400.895375
+std    25343.859425  25561.440127    837.151723
+min       53.000000     53.000000     54.000000
+25%      443.000000    443.000000     54.000000
+50%      443.000000    443.000000     66.000000
+75%    49428.000000  49428.000000    440.000000
+max    65531.000000  65531.000000  64294.000000
+
+Información adicional:
+- Protocolos únicos: ['UDP' 'TCP']
+- Distribución de protocolos:
+  - TCP: 26064 (76.9%)
+  - UDP: 7838 (23.1%)
+
+- Registros con DNS queries: 1459 (4.3%)
+- Registros con HTTP host: 390 (1.2%)
+- Registros marcados como outliers: 7182 (21.2%)
+
+Creando verify_dataset_output.txt...
+
+Dataset verificado correctamente.
